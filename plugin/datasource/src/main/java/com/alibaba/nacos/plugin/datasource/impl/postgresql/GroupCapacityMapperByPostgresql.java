@@ -13,23 +13,21 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+package com.alibaba.nacos.plugin.datasource.impl.postgresql;
 
-package com.alibaba.nacos.plugin.datasource.constants;
-
+import com.alibaba.nacos.plugin.datasource.constants.DataSourceConstant;
+import com.alibaba.nacos.plugin.datasource.impl.base.BaseGroupCapacityMapper;
+import com.alibaba.nacos.plugin.datasource.mapper.GroupCapacityMapper;
 /**
- * The data source name.
  *
- * @author hyx
- **/
-
-public class DataSourceConstant {
-    public static final String MYSQL = "mysql";
+ * @author zhang wenchao
+ *  2024/7/24 15:11
+ */
+public class GroupCapacityMapperByPostgresql extends BaseGroupCapacityMapper implements GroupCapacityMapper {
     
-    public static final String DERBY = "derby";
-
-    public static final String ORACLE = "oracle";
-
-    public static final String DM = "dameng";
-
-    public static final String POSTGRESQL = "postgresql";
+    @Override
+    public String getDataSource() {
+        return DataSourceConstant.POSTGRESQL;
+    }
+    
 }

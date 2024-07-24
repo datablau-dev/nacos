@@ -89,6 +89,7 @@
     
     <properties>
         <revision>2.4.0</revision>
+
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <!-- Compiler settings properties -->
@@ -102,6 +103,9 @@
         <sonar.exclusions>file:**/generated-sources/**,**/test/**</sonar.exclusions>
         
         <!-- plugin version -->
+        <jdbc.oracle.version>21.5.0.0</jdbc.oracle.version>
+        <jdbc.postgresql.version>42.2.19</jdbc.postgresql.version>
+        <jdbc.dameng.version>8.1.1.193</jdbc.dameng.version>
         <versions-maven-plugin.version>2.2</versions-maven-plugin.version>
         <dependency-mediator-maven-plugin.version>1.0.2</dependency-mediator-maven-plugin.version>
         <clirr-maven-plugin.version>2.7</clirr-maven-plugin.version>
@@ -684,7 +688,21 @@
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
-            
+            <dependency>
+                <groupId>com.oracle.database.jdbc</groupId>
+                <artifactId>ojdbc8</artifactId>
+                <version>${jdbc.oracle.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.postgresql</groupId>
+                <artifactId>postgresql</artifactId>
+                <version>${jdbc.postgresql.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.dameng</groupId>
+                <artifactId>DmJdbcDriver18</artifactId>
+                <version>${jdbc.dameng.version}</version>
+            </dependency>
             <!-- Internal libs -->
             <dependency>
                 <groupId>${project.groupId}</groupId>

@@ -17,19 +17,14 @@
 package com.alibaba.nacos.plugin.datasource.constants;
 
 /**
- * The data source name.
- *
- * @author hyx
- **/
+ * PrimaryKeyConstant
+ * @author zhang wenchao
+ *  2024/7/24 16:08
+ */
+public class PrimaryKeyConstant {
 
-public class DataSourceConstant {
-    public static final String MYSQL = "mysql";
-    
-    public static final String DERBY = "derby";
+    public static final String[] LOWER_RETURN_PRIMARY_KEYS = new String[]{"id"};
 
-    public static final String ORACLE = "oracle";
+    public static final String[] UPPER_RETURN_PRIMARY_KEYS = new String[]{"ID"};
 
-    public static final String DM = "dameng";
-
-    public static final String POSTGRESQL = "postgresql";
 }

@@ -14,22 +14,23 @@
  * limitations under the License.
  */
 
-package com.alibaba.nacos.plugin.datasource.constants;
+package com.alibaba.nacos.plugin.datasource.impl.postgresql;
+
+
+import com.alibaba.nacos.plugin.datasource.constants.DataSourceConstant;
+import com.alibaba.nacos.plugin.datasource.impl.base.BaseConfigInfoAggrMapper;
+import com.alibaba.nacos.plugin.datasource.mapper.ConfigInfoAggrMapper;
 
 /**
- * The data source name.
  *
- * @author hyx
- **/
-
-public class DataSourceConstant {
-    public static final String MYSQL = "mysql";
+ * @author zhang wenchao
+ *  2024/7/24 15:11
+ */
+public class ConfigInfoAggrMapperByPostgresql extends BaseConfigInfoAggrMapper implements ConfigInfoAggrMapper {
     
-    public static final String DERBY = "derby";
-
-    public static final String ORACLE = "oracle";
-
-    public static final String DM = "dameng";
-
-    public static final String POSTGRESQL = "postgresql";
+    @Override
+    public String getDataSource() {
+        return DataSourceConstant.POSTGRESQL;
+    }
+    
 }

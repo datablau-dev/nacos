@@ -14,22 +14,21 @@
  * limitations under the License.
  */
 
-package com.alibaba.nacos.plugin.datasource.constants;
+package com.alibaba.nacos.plugin.datasource.dialect;
+
+
+import com.alibaba.nacos.plugin.datasource.constants.DataSourceConstant;
 
 /**
- * The data source name.
- *
- * @author hyx
- **/
+ * DefaultDatabaseDialect
+ * @author zhang wenchao
+ *  2024/7/24 15:46
+ */
+public class DefaultDatabaseDialect extends AbstractDatabaseDialect {
 
-public class DataSourceConstant {
-    public static final String MYSQL = "mysql";
-    
-    public static final String DERBY = "derby";
+    @Override
+    public String getType() {
+        return DataSourceConstant.MYSQL;
+    }
 
-    public static final String ORACLE = "oracle";
-
-    public static final String DM = "dameng";
-
-    public static final String POSTGRESQL = "postgresql";
 }

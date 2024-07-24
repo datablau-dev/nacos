@@ -14,22 +14,21 @@
  * limitations under the License.
  */
 
-package com.alibaba.nacos.plugin.datasource.constants;
+package com.alibaba.nacos.plugin.datasource.impl.oracle;
 
+import com.alibaba.nacos.plugin.datasource.constants.TableConstant;
+import com.alibaba.nacos.plugin.datasource.mapper.TenantInfoMapper;
 /**
- * The data source name.
- *
- * @author hyx
- **/
+ * @Description: TODO
+ * @author zhang wenchao
+ * @date 2024/7/24 10:14
+ */
+public class TenantInfoMapperByBaseOracle extends BaseOracleAbstractMapper implements TenantInfoMapper {
 
-public class DataSourceConstant {
-    public static final String MYSQL = "mysql";
-    
-    public static final String DERBY = "derby";
 
-    public static final String ORACLE = "oracle";
+	@Override
+	public String getTableName() {
+		return TableConstant.TENANT_INFO;
+	}
 
-    public static final String DM = "dameng";
-
-    public static final String POSTGRESQL = "postgresql";
 }

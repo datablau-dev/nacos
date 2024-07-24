@@ -140,6 +140,7 @@ public class ExternalDataSourceServiceImpl implements DataSourceService {
                         JdbcTemplate jdbcTemplate = new JdbcTemplate();
                         jdbcTemplate.setQueryTimeout(queryTimeout);
                         jdbcTemplate.setDataSource(dataSource);
+                        jt.setDataSource(dataSource);
                         testJtListNew.add(jdbcTemplate);
                         isHealthListNew.add(Boolean.TRUE);
                     });
