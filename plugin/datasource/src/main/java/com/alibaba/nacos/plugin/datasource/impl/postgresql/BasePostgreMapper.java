@@ -1,5 +1,5 @@
 /*
- * Copyright 1999-2022 Alibaba Group Holding Ltd.
+ * Copyright 1999-2018 Alibaba Group Holding Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,10 +16,13 @@
 
 package com.alibaba.nacos.plugin.datasource.impl.postgresql;
 
+import com.alibaba.nacos.plugin.datasource.constants.DataSourceConstant;
 import com.alibaba.nacos.plugin.datasource.constants.TableConstant;
 import com.alibaba.nacos.plugin.datasource.dialect.DatabaseDialect;
+import com.alibaba.nacos.plugin.datasource.enums.postgre.TrustedPostgreFunctionEnum;
 import com.alibaba.nacos.plugin.datasource.impl.mysql.ConfigInfoBetaMapperByMySql;
 import com.alibaba.nacos.plugin.datasource.manager.DatabaseDialectManager;
+import com.alibaba.nacos.plugin.datasource.mapper.AbstractMapper;
 import com.alibaba.nacos.plugin.datasource.model.MapperContext;
 import com.alibaba.nacos.plugin.datasource.model.MapperResult;
 
@@ -34,10 +37,10 @@ import java.util.List;
  * @create: 2024-07-24 15:43
  * @Version 1.0
  **/
-public class BaseConfigInfoBetaMapper extends ConfigInfoBetaMapperByMySql {
+public class BasePostgreMapper extends ConfigInfoBetaMapperByMySql {
     private DatabaseDialect databaseDialect = DatabaseDialectManager.getInstance().getDialect(this.getDataSource());
 
-    public BaseConfigInfoBetaMapper() {
+    public BasePostgreMapper() {
     }
 
     public String getTableName() {
