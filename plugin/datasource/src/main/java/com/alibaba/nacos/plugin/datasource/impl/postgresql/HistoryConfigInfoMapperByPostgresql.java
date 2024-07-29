@@ -18,6 +18,7 @@ package com.alibaba.nacos.plugin.datasource.impl.postgresql;
 import com.alibaba.nacos.common.utils.CollectionUtils;
 import com.alibaba.nacos.plugin.datasource.constants.DataSourceConstant;
 import com.alibaba.nacos.plugin.datasource.constants.FieldConstant;
+import com.alibaba.nacos.plugin.datasource.constants.TableConstant;
 import com.alibaba.nacos.plugin.datasource.impl.mysql.HistoryConfigInfoMapperByMySql;
 import com.alibaba.nacos.plugin.datasource.mapper.HistoryConfigInfoMapper;
 import com.alibaba.nacos.plugin.datasource.model.MapperContext;
@@ -27,7 +28,7 @@ import com.alibaba.nacos.plugin.datasource.model.MapperResult;
  * @author zhang wenchao
  *  2024/7/24 15:11
  */
-public class HistoryConfigInfoMapperByPostgresql extends HistoryConfigInfoMapperByMySql implements HistoryConfigInfoMapper {
+public class HistoryConfigInfoMapperByPostgresql extends BasePostgreMapper implements HistoryConfigInfoMapper {
 
     /**
      *
@@ -45,9 +46,19 @@ public class HistoryConfigInfoMapperByPostgresql extends HistoryConfigInfoMapper
         return new MapperResult(sql, CollectionUtils.list(context.getWhereParameter(FieldConstant.START_TIME),
                 context.getWhereParameter(FieldConstant.LIMIT_SIZE)));
     }
-    @Override
-    public String getDataSource() {
-        return DataSourceConstant.POSTGRESQL;
+
+    public MapperResult pageFindConfigHistoryFetchRows(MapperContext context) {
+        String sql =getLimitPageSql(
+                "SELECT nid,data_id,group_id,tenant_id,app_name,src_ip,src_user,op_type,gmt_create,gmt_modified FROM his_config_info "
+                        + "WHERE data_id = ? AND group_id = ? AND tenant_id = ? ORDER BY nid DESC   "
+                        , context.getStartRow() , context.getPageSize());
+        return new MapperResult(sql, CollectionUtils.list(context.getWhereParameter(FieldConstant.DATA_ID),
+                context.getWhereParameter(FieldConstant.GROUP_ID), context.getWhereParameter(FieldConstant.TENANT_ID)));
     }
-    
+
+    @Override
+    public String getTableName() {
+        return TableConstant.HIS_CONFIG_INFO;
+    }
+
 }

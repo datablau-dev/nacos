@@ -17,20 +17,42 @@
 package com.alibaba.nacos.plugin.datasource.impl.postgresql;
 
 
-import com.alibaba.nacos.plugin.datasource.constants.DataSourceConstant;
-import com.alibaba.nacos.plugin.datasource.impl.base.BaseConfigInfoAggrMapper;
+import com.alibaba.nacos.common.utils.CollectionUtils;
+import com.alibaba.nacos.plugin.datasource.constants.FieldConstant;
+import com.alibaba.nacos.plugin.datasource.constants.TableConstant;
 import com.alibaba.nacos.plugin.datasource.mapper.ConfigInfoAggrMapper;
+import com.alibaba.nacos.plugin.datasource.model.MapperContext;
+import com.alibaba.nacos.plugin.datasource.model.MapperResult;
+
+import java.util.List;
 
 /**
  *
  * @author zhang wenchao
  *  2024/7/24 15:11
  */
-public class ConfigInfoAggrMapperByPostgresql extends BaseConfigInfoAggrMapper implements ConfigInfoAggrMapper {
-    
+public class ConfigInfoAggrMapperByPostgresql extends BasePostgreMapper implements ConfigInfoAggrMapper {
+
+
     @Override
-    public String getDataSource() {
-        return DataSourceConstant.POSTGRESQL;
+    public MapperResult findConfigInfoAggrByPageFetchRows(MapperContext context) {
+        final Integer startRow = context.getStartRow();
+        final Integer pageSize = context.getPageSize();
+        final String dataId = (String) context.getWhereParameter(FieldConstant.DATA_ID);
+        final String groupId = (String) context.getWhereParameter(FieldConstant.GROUP_ID);
+        final String tenantId = (String) context.getWhereParameter(FieldConstant.TENANT_ID);
+
+        String sql =getLimitPageSql(
+                "SELECT data_id,group_id,tenant_id,datum_id,app_name,content FROM config_info_aggr WHERE data_id=? AND "
+                        + "group_id=? AND tenant_id=? ORDER BY datum_id", startRow, pageSize) ;
+        List<Object> paramList = CollectionUtils.list(dataId, groupId, tenantId);
+        return new MapperResult(sql, paramList);
     }
-    
+
+
+    @Override
+    public String getTableName() {
+        return TableConstant.CONFIG_INFO_AGGR;
+    }
+
 }

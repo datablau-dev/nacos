@@ -14,9 +14,11 @@
  * limitations under the License.
  */
 
-package com.alibaba.nacos.plugin.datasource.dialect;
+package com.alibaba.nacos.plugin.datasource.impl.postgresql.dialect;
 
 import com.alibaba.nacos.plugin.datasource.constants.DataSourceConstant;
+import com.alibaba.nacos.plugin.datasource.dialect.AbstractDatabaseDialect;
+
 /**
  * PostgresqlDatabaseDialect
  * @author zhang wenchao
@@ -48,5 +50,7 @@ public class PostgresqlDatabaseDialect extends AbstractDatabaseDialect {
     public String getLimitPageSqlWithOffset(String sql, int startOffset, int pageSize){
         return sql + "  OFFSET " + startOffset + " LIMIT " + pageSize;
     }
+
+
 
 }
