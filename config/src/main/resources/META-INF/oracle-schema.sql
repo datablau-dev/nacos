@@ -40,8 +40,8 @@ CREATE TABLE "DATABLAU_NACOS"."CONFIG_INFO" (
                                               "GROUP_ID" VARCHAR2(128 BYTE) VISIBLE DEFAULT NULL,
                                               "CONTENT" CLOB VISIBLE NOT NULL,
                                               "MD5" VARCHAR2(32 BYTE) VISIBLE DEFAULT NULL,
-                                              "GMT_CREATE" TIMESTAMP(6) VISIBLE NOT NULL,
-                                              "GMT_MODIFIED" TIMESTAMP(6) VISIBLE NOT NULL,
+                                              "GMT_CREATE" TIMESTAMP(6) VISIBLE ,
+                                              "GMT_MODIFIED" TIMESTAMP(6) VISIBLE ,
                                               "SRC_USER" CLOB VISIBLE DEFAULT NULL,
                                               "SRC_IP" VARCHAR2(50 BYTE) VISIBLE DEFAULT NULL,
                                               "APP_NAME" VARCHAR2(128 BYTE) VISIBLE DEFAULT NULL,
@@ -85,7 +85,15 @@ COMMENT ON COLUMN "DATABLAU_NACOS"."CONFIG_INFO"."EFFECT" IS '配置生效的描
 COMMENT ON COLUMN "DATABLAU_NACOS"."CONFIG_INFO"."TYPE" IS '配置的类型';
 COMMENT ON COLUMN "DATABLAU_NACOS"."CONFIG_INFO"."C_SCHEMA" IS '配置的模式';
 COMMENT ON COLUMN "DATABLAU_NACOS"."CONFIG_INFO"."ENCRYPTED_DATA_KEY" IS '密钥';
+CREATE SEQUENCE config_info_info_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    MINVALUE 1
+    MAXVALUE 999999999999999999
+    CACHE 20;
 
+ALTER TABLE DATABLAU_NACOS.CONFIG_INFO
+    MODIFY ID DEFAULT config_info_info_id_seq.NEXTVAL;
 -- ----------------------------
 -- TABLE STRUCTURE FOR CONFIG_INFO_AGGR
 -- ----------------------------
@@ -123,7 +131,15 @@ COMMENT ON COLUMN "DATABLAU_NACOS"."CONFIG_INFO_AGGR"."GMT_MODIFIED" IS '修改�
 COMMENT ON COLUMN "DATABLAU_NACOS"."CONFIG_INFO_AGGR"."APP_NAME" IS 'APP_NAME';
 COMMENT ON COLUMN "DATABLAU_NACOS"."CONFIG_INFO_AGGR"."TENANT_ID" IS '租户字段';
 COMMENT ON COLUMN "DATABLAU_NACOS"."CONFIG_INFO_AGGR"."DATUM_ID" IS 'DATUM_ID';
+CREATE SEQUENCE config_info_aggr_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    MINVALUE 1
+    MAXVALUE 999999999999999999
+    CACHE 20;
 
+ALTER TABLE DATABLAU_NACOS.CONFIG_INFO_AGGR
+    MODIFY ID DEFAULT config_info_aggr_id_seq.NEXTVAL;
 -- ----------------------------
 -- TABLE STRUCTURE FOR CONFIG_INFO_BETA
 -- ----------------------------
@@ -171,7 +187,15 @@ COMMENT ON COLUMN "DATABLAU_NACOS"."CONFIG_INFO_BETA"."APP_NAME" IS 'APP_NAME';
 COMMENT ON COLUMN "DATABLAU_NACOS"."CONFIG_INFO_BETA"."TENANT_ID" IS '租户字段';
 COMMENT ON COLUMN "DATABLAU_NACOS"."CONFIG_INFO_BETA"."ENCRYPTED_DATA_KEY" IS '密钥';
 COMMENT ON COLUMN "DATABLAU_NACOS"."CONFIG_INFO_BETA"."BETA_IPS" IS 'BETA_IPS';
+CREATE SEQUENCE config_info_beta_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    MINVALUE 1
+    MAXVALUE 999999999999999999
+    CACHE 20;
 
+ALTER TABLE DATABLAU_NACOS.CONFIG_INFO_BETA
+    MODIFY ID DEFAULT config_info_beta_id_seq.NEXTVAL;
 -- ----------------------------
 -- TABLE STRUCTURE FOR CONFIG_INFO_TAG
 -- ----------------------------
@@ -182,8 +206,8 @@ CREATE TABLE "DATABLAU_NACOS"."CONFIG_INFO_TAG" (
                                                   "GROUP_ID" VARCHAR2(128 BYTE) VISIBLE DEFAULT NULL NOT NULL,
                                                   "CONTENT" CLOB VISIBLE DEFAULT NULL NOT NULL,
                                                   "MD5" VARCHAR2(32 BYTE) VISIBLE DEFAULT NULL,
-                                                  "GMT_CREATE" TIMESTAMP(6) VISIBLE NOT NULL,
-                                                  "GMT_MODIFIED" TIMESTAMP(6) VISIBLE NOT NULL,
+                                                  "GMT_CREATE" TIMESTAMP(6) VISIBLE ,
+                                                  "GMT_MODIFIED" TIMESTAMP(6) VISIBLE ,
                                                   "SRC_USER" CLOB VISIBLE DEFAULT NULL,
                                                   "SRC_IP" VARCHAR2(50 BYTE) VISIBLE DEFAULT NULL,
                                                   "APP_NAME" VARCHAR2(128 BYTE) VISIBLE DEFAULT NULL,
@@ -217,7 +241,15 @@ COMMENT ON COLUMN "DATABLAU_NACOS"."CONFIG_INFO_TAG"."SRC_IP" IS 'SOURCE IP';
 COMMENT ON COLUMN "DATABLAU_NACOS"."CONFIG_INFO_TAG"."APP_NAME" IS 'APP_NAME';
 COMMENT ON COLUMN "DATABLAU_NACOS"."CONFIG_INFO_TAG"."TENANT_ID" IS '租户字段';
 COMMENT ON COLUMN "DATABLAU_NACOS"."CONFIG_INFO_TAG"."TAG_ID" IS 'TAG_ID';
+CREATE SEQUENCE config_info_tag_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    MINVALUE 1
+    MAXVALUE 999999999999999999
+    CACHE 20;
 
+ALTER TABLE DATABLAU_NACOS.CONFIG_INFO_TAG
+    MODIFY ID DEFAULT config_info_tag_id_seq.NEXTVAL;
 -- ----------------------------
 -- TABLE STRUCTURE FOR CONFIG_TAGS_RELATION
 -- ----------------------------
@@ -253,6 +285,16 @@ COMMENT ON COLUMN "DATABLAU_NACOS"."CONFIG_TAGS_RELATION"."TENANT_ID" IS '租户
 COMMENT ON COLUMN "DATABLAU_NACOS"."CONFIG_TAGS_RELATION"."TAG_NAME" IS 'TAG_NAME';
 COMMENT ON COLUMN "DATABLAU_NACOS"."CONFIG_TAGS_RELATION"."TAG_TYPE" IS 'TAG_TYPE';
 COMMENT ON COLUMN "DATABLAU_NACOS"."CONFIG_TAGS_RELATION"."NID" IS 'NID, 自增长标识NID';
+CREATE SEQUENCE config_tags_relation_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    MINVALUE 1
+    MAXVALUE 999999999999999999
+    CACHE 20;
+
+ALTER TABLE DATABLAU_NACOS.CONFIG_TAGS_RELATION
+    MODIFY ID DEFAULT config_tags_relation_id_seq.NEXTVAL;
+
 
 -- ----------------------------
 -- TABLE STRUCTURE FOR GROUP_CAPACITY
@@ -294,7 +336,15 @@ COMMENT ON COLUMN "DATABLAU_NACOS"."GROUP_CAPACITY"."MAX_AGGR_COUNT" IS '聚合�
 COMMENT ON COLUMN "DATABLAU_NACOS"."GROUP_CAPACITY"."MAX_AGGR_SIZE" IS '单个聚合数据的子配置大小上限，单位为字节，0表示使用默认值';
 COMMENT ON COLUMN "DATABLAU_NACOS"."GROUP_CAPACITY"."MAX_HISTORY_COUNT" IS '最大变更历史数量';
 COMMENT ON COLUMN "DATABLAU_NACOS"."GROUP_CAPACITY"."GMT_CREATE" IS '创建时间';
+CREATE SEQUENCE group_capacity_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    MINVALUE 1
+    MAXVALUE 999999999999999999
+    CACHE 20;
 
+ALTER TABLE DATABLAU_NACOS.GROUP_CAPACITY
+    MODIFY ID DEFAULT group_capacity_id_seq.NEXTVAL;
 -- ----------------------------
 -- TABLE STRUCTURE FOR HIS_CONFIG_INFO
 -- ----------------------------
@@ -305,8 +355,8 @@ CREATE TABLE "DATABLAU_NACOS"."HIS_CONFIG_INFO" (
                                                   "GROUP_ID" VARCHAR2(128 BYTE) VISIBLE DEFAULT NULL NOT NULL,
                                                   "CONTENT" CLOB VISIBLE DEFAULT NULL NOT NULL,
                                                   "MD5" VARCHAR2(32 BYTE) VISIBLE DEFAULT NULL,
-                                                  "GMT_CREATE" TIMESTAMP(6) VISIBLE NOT NULL,
-                                                  "GMT_MODIFIED" TIMESTAMP(6) VISIBLE NOT NULL,
+                                                  "GMT_CREATE" TIMESTAMP(6) VISIBLE ,
+                                                  "GMT_MODIFIED" TIMESTAMP(6) VISIBLE ,
                                                   "SRC_USER" CLOB VISIBLE DEFAULT NULL,
                                                   "SRC_IP" VARCHAR2(50 BYTE) VISIBLE DEFAULT NULL,
                                                   "APP_NAME" VARCHAR2(128 BYTE) VISIBLE DEFAULT NULL,
@@ -344,13 +394,31 @@ COMMENT ON COLUMN "DATABLAU_NACOS"."HIS_CONFIG_INFO"."TENANT_ID" IS '租户字�
 COMMENT ON COLUMN "DATABLAU_NACOS"."HIS_CONFIG_INFO"."NID" IS 'NID, 自增标识';
 COMMENT ON COLUMN "DATABLAU_NACOS"."HIS_CONFIG_INFO"."OP_TYPE" IS 'OPERATION TYPE';
 COMMENT ON COLUMN "DATABLAU_NACOS"."HIS_CONFIG_INFO"."ENCRYPTED_DATA_KEY" IS '密钥';
+CREATE SEQUENCE his_config_info_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    MINVALUE 1
+    MAXVALUE 999999999999999999
+    CACHE 20;
 
+ALTER TABLE DATABLAU_NACOS.HIS_CONFIG_INFO
+    MODIFY ID DEFAULT his_config_info_id_seq.NEXTVAL;
+
+CREATE SEQUENCE his_config_info_nid_seq
+    START WITH 1
+    INCREMENT BY 1
+    MINVALUE 1
+    MAXVALUE 999999999999999999
+    CACHE 20;
+
+ALTER TABLE DATABLAU_NACOS.HIS_CONFIG_INFO
+    MODIFY NID DEFAULT his_config_info_nid_seq.NEXTVAL;
 -- ----------------------------
 -- TABLE STRUCTURE FOR PERMISSIONS
 -- ----------------------------
 --DROP TABLE IF EXISTS "DATABLAU_NACOS"."PERMISSIONS";
 CREATE TABLE "DATABLAU_NACOS"."PERMISSIONS" (
-                                          --    "ID" NUMBER(20,0) VISIBLE NOT NULL,
+    --    "ID" NUMBER(20,0) VISIBLE NOT NULL,
                                               "ROLE" VARCHAR2(50 BYTE) VISIBLE,
                                               "RESOURCE" VARCHAR2(128 BYTE) VISIBLE,
                                               "ACTION" VARCHAR2(8 BYTE) VISIBLE
@@ -376,7 +444,7 @@ DISABLE ROW MOVEMENT
 -- ----------------------------
 --DROP TABLE IF EXISTS "DATABLAU_NACOS"."ROLES";
 CREATE TABLE "DATABLAU_NACOS"."ROLES" (
-                                      --  "ID" NUMBER(20,0) VISIBLE NOT NULL,
+    --  "ID" NUMBER(20,0) VISIBLE NOT NULL,
                                         "USERNAME" VARCHAR2(50 BYTE) VISIBLE NOT NULL,
                                         "ROLE" VARCHAR2(50 BYTE) VISIBLE NOT NULL
 )
@@ -436,7 +504,15 @@ COMMENT ON COLUMN "DATABLAU_NACOS"."TENANT_CAPACITY"."MAX_AGGR_COUNT" IS '聚合
 COMMENT ON COLUMN "DATABLAU_NACOS"."TENANT_CAPACITY"."MAX_AGGR_SIZE" IS '单个聚合数据的子配置大小上限，单位为字节，0表示使用默认值';
 COMMENT ON COLUMN "DATABLAU_NACOS"."TENANT_CAPACITY"."MAX_HISTORY_COUNT" IS '最大变更历史数量';
 COMMENT ON COLUMN "DATABLAU_NACOS"."TENANT_CAPACITY"."GMT_CREATE" IS '创建时间';
+CREATE SEQUENCE tenant_capacity_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    MINVALUE 1
+    MAXVALUE 999999999999999999
+    CACHE 20;
 
+ALTER TABLE DATABLAU_NACOS.TENANT_CAPACITY
+    MODIFY ID DEFAULT tenant_capacity_id_seq.NEXTVAL;
 -- ----------------------------
 -- TABLE STRUCTURE FOR TENANT_INFO
 -- ----------------------------
@@ -475,12 +551,21 @@ COMMENT ON COLUMN "DATABLAU_NACOS"."TENANT_INFO"."CREATE_SOURCE" IS 'CREATE_SOUR
 COMMENT ON COLUMN "DATABLAU_NACOS"."TENANT_INFO"."GMT_CREATE" IS '创建时间';
 COMMENT ON COLUMN "DATABLAU_NACOS"."TENANT_INFO"."GMT_MODIFIED" IS '修改时间';
 
+CREATE SEQUENCE tenant_info_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    MINVALUE 1
+    MAXVALUE 999999999999999999
+    CACHE 20;
+
+ALTER TABLE DATABLAU_NACOS.TENANT_INFO
+    MODIFY ID DEFAULT tenant_info_id_seq.NEXTVAL;
 -- ----------------------------
 -- TABLE STRUCTURE FOR USERS
 -- ----------------------------
 --DROP TABLE IF EXISTS "DATABLAU_NACOS"."USERS";
 CREATE TABLE "DATABLAU_NACOS"."USERS" (
-                                  --      "ID" NUMBER(20,0) VISIBLE NOT NULL,
+    --      "ID" NUMBER(20,0) VISIBLE NOT NULL,
                                         "USERNAME" VARCHAR2(50 BYTE) VISIBLE NOT NULL,
                                         "PASSWORD" VARCHAR2(500 BYTE) VISIBLE NOT NULL,
                                         "ENABLED" NUMBER(1,0) VISIBLE NOT NULL

@@ -31,7 +31,7 @@ public enum TrustedPostgreFunctionEnum {
     /**
      * NOW().
      */
-    NOW("NOW()", "NOW(3)");
+    NOW("NOW()", "NOW()");
 
     private static final Map<String, TrustedPostgreFunctionEnum> LOOKUP_MAP = new HashMap<>();
 
