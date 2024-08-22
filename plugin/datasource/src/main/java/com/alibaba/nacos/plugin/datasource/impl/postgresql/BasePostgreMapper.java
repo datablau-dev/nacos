@@ -17,14 +17,8 @@
 package com.alibaba.nacos.plugin.datasource.impl.postgresql;
 
 import com.alibaba.nacos.plugin.datasource.constants.DataSourceConstant;
-import com.alibaba.nacos.plugin.datasource.constants.TableConstant;
-import com.alibaba.nacos.plugin.datasource.dialect.DatabaseDialect;
 import com.alibaba.nacos.plugin.datasource.enums.postgre.TrustedPostgreFunctionEnum;
-import com.alibaba.nacos.plugin.datasource.impl.mysql.ConfigInfoBetaMapperByMySql;
-import com.alibaba.nacos.plugin.datasource.manager.DatabaseDialectManager;
 import com.alibaba.nacos.plugin.datasource.mapper.AbstractMapper;
-import com.alibaba.nacos.plugin.datasource.model.MapperContext;
-import com.alibaba.nacos.plugin.datasource.model.MapperResult;
 
 import java.util.ArrayList;
 import java.util.List;

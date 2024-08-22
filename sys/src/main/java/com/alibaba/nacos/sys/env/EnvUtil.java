@@ -42,12 +42,12 @@ import java.nio.charset.StandardCharsets;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Properties;
 import java.util.Set;
-import java.util.HashMap;
 
 /**
  * Its own configuration information manipulation tool class.
@@ -328,7 +328,7 @@ public class EnvUtil {
     
     public static float getMem() {
         return (float) (1
-                - OperatingSystemBeanManager.getFreePhysicalMem() / OperatingSystemBeanManager.getTotalPhysicalMem());
+                - (double) OperatingSystemBeanManager.getFreePhysicalMem() / (double) OperatingSystemBeanManager.getTotalPhysicalMem());
     }
     
     public static String getConfPath() {
